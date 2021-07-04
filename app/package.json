@@ -1,0 +1,28 @@
+{
+  "name": "technical-case-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -L server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gzanarelli/technical-case-back.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gzanarelli/technical-case-back/issues"
+  },
+  "homepage": "https://github.com/gzanarelli/technical-case-back#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.9",
+    "sequelize": "^6.6.4",
+    "sqlite3": "^5.0.2"
+  }
+}

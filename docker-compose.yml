@@ -1,0 +1,65 @@
+version: '3.1'
+
+services:
+  api:
+    tty: true
+    image: node:14
+    command: sh -c "cd /app && npm i && npm i nodemon && npm run dev"
+    volumes:
+      - "./app:/app"
+    networks:
+      - webgateway
+      - default
+    depends_on:
+      - sqlite3
+      - mail
+    ports:
+      - "8584:8281"
+    environment:
+      NODE_ENV: development
+      PORT: 8281
+
+      SQLITE_USER: gzanarelli
+      SQLITE_PASSWORD: gzanarelli
+      MAIL_HOST: mail
+      MAIL_PORT: 25
+      MAIL_FROM: "'Wooclap' <contact@wooclap.fr>"
+      MAIL_SUPPORT: support@wooclap.com
+
+    labels:
+      traefik.enable: 'true'
+      traefik.port: 8281
+      traefik.acme: 'false'
+      traefik.frontend.rule: 'Host:api.wooclap.devel'
+      traefik.docker.network: 'traefikforwebdev_webgateway'
+      traefik.frontend.redirect.regex: ''
+      traefik.frontend.redirect.replacement: ''
+
+  sqlite3:
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./db/:/root/db/
+    labels:
+      traefik.enable: "false"
+
+  mail:
+    image: djfarrelly/maildev
+    networks:
+      - webgateway
+      - default
+    labels:
+      traefik.enable: "true"
+      traefik.port: "80"
+      traefik.backend: "mail.api.wooclap.devel"
+      traefik.frontend.rule: "Host:mail.api.wooclap.devel"
+      traefik.docker.network: "traefikforwebdev_webgateway"
+
+networks:
+  webgateway:
+    external:
+      name: traefikforwebdev_webgateway
+
+volumes:
+  database:
