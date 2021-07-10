@@ -7,6 +7,7 @@ services:
     command: sh -c "cd /app && npm i && npm i nodemon && npm run dev"
     volumes:
       - "./app:/app"
+      - ./db/wooclap.db:/app/wooclap.sqlite3
     networks:
       - webgateway
       - default
@@ -40,7 +41,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./db/:/root/db/
+      - ./db/wooclap.db:/db/wooclap.sqlite3
     labels:
       traefik.enable: "false"
 

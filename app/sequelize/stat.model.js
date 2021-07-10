@@ -9,22 +9,16 @@ module.exports = (sequelize) => {
 			type: DataTypes.INTEGER,
 		},
 		nb_created_events: {
-			allowNull: false,
-			autoIncrement: false,
-			primaryKey: false,
 			type: DataTypes.INTEGER,
 		},
 		nb_created_questions: {
-			allowNull: false,
-			autoIncrement: false,
-			primaryKey: false,
 			type: DataTypes.INTEGER,
 		},
 		nb_collected_answers: {
-			allowNull: false,
-			autoIncrement: false,
-			primaryKey: false,
 			type: DataTypes.INTEGER,
 		},
-	})
+		user_id: {
+			type: DataTypes.INTEGER,
+		}
+	}).sync({ alter: true })
 }

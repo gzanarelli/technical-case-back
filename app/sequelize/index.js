@@ -1,9 +1,13 @@
 const { Sequelize } = require('sequelize');
 const { applyExtraSetup } = require('./extra-setup');
+const path = require('path')
 
 const sequelize = new Sequelize({
 	dialect: 'sqlite',
-	storage: '/db/wooclap.db',
+	storage: path.join(__dirname, '../wooclap.sqlite3'),
+	define: {
+		timestamps: false
+	}
 });
 
 const modelDefiners = [

@@ -10,27 +10,16 @@ module.exports = (sequelize) => {
 		},
 		email_address: {
 			allowNull: false,
-			autoIncrement: false,
-			primaryKey: false,
 			type: DataTypes.STRING,
 		},
 		name: {
-			allowNull: false,
-			autoIncrement: false,
-			primaryKey: false,
 			type: DataTypes.STRING,
 		},
 		job_title: {
-			allowNull: false,
-			autoIncrement: false,
-			primaryKey: false,
 			type: DataTypes.STRING,
 		},
 		organisation: {
-			allowNull: false,
-			autoIncrement: false,
-			primaryKey: false,
 			type: DataTypes.STRING,
-		}
-	})
+		},
+	}).sync({ alter: true })
 }
